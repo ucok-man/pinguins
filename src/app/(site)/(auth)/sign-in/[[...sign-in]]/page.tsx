@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { SignIn } from "@clerk/nextjs"
-import { useSearchParams } from "next/navigation"
+import { SignIn } from "@clerk/nextjs";
+import { useSearchParams } from "next/navigation";
 
 export default function SigninPage() {
-  const searchparams = useSearchParams()
-  const intent = searchparams.get("intent")
+  const searchparams = useSearchParams();
+  const intent = searchparams.get("intent");
 
   return (
     <div className="w-full flex-1 flex items-center justify-center">
@@ -13,5 +13,5 @@ export default function SigninPage() {
         forceRedirectUrl={intent ? `/dashboard?intent=${intent}` : "/dashboard"}
       />
     </div>
-  )
+  );
 }

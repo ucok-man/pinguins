@@ -9,7 +9,7 @@ export const authRouter = j.router({
     if (!clerkuser) {
       return c.json({ isSynced: false });
     }
-    const user = await db.user.findFirst({
+    const user = await db.user.findUnique({
       where: {
         externalId: clerkuser.id,
       },
@@ -28,6 +28,7 @@ export const authRouter = j.router({
           externalId: clerkuser.id,
           email: email,
           quotaLimit: 100,
+          plan: "FREE",
         },
       });
     }

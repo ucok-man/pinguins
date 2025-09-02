@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn(inter.variable, eb_garamond.variable)}>
-      <body className="min-h-[calc(100vh-1px)] font-primary bg-brand-primary-50 antialiased">
+      <body className="font-primary bg-brand-primary-50 antialiased">
         <Providers>
           <div className="fixed top-0 inset-0 -z-10">
             <BgPattern />
