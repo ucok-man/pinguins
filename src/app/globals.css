@@ -4,83 +4,71 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f6f6f6;
-  --foreground: #262626;
-  --card: #f6f6f6;
-  --card-foreground: #262626;
-  --popover: #f6f6f6;
-  --popover-foreground: #262626;
-  --primary: #3ba99d;
-  --primary-foreground: #f6f6f6;
-  --secondary: #12ba98;
-  --secondary-foreground: #f6f6f6;
-  --muted: #d5f2ec;
-  --muted-foreground: #737373;
-  --accent: #d5f2ec;
-  --accent-foreground: #262626;
-  --destructive: #e7000b;
-  --destructive-foreground: #f6f6f6;
-  --border: #d1d1d1;
-  --input: #d1d1d1;
-  --ring: #4eb3a6;
-  --chart-1: #91c5ff;
-  --chart-2: #3a81f6;
-  --chart-3: #2563ef;
-  --chart-4: #1a4eda;
-  --chart-5: #1f3fad;
-  --sidebar: #f6f6f6;
-  --sidebar-foreground: #262626;
-  --sidebar-primary: #262626;
-  --sidebar-primary-foreground: #f6f6f6;
-  --sidebar-accent: #f6f6f6;
-  --sidebar-accent-foreground: #262626;
-  --sidebar-border: #d1d1d1;
-  --sidebar-ring: #4eb3a6;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-  --radius: 0.625rem;
-  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
-    0 1px 2px -1px hsl(0 0% 0% / 0.1);
-  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
-    0 2px 4px -1px hsl(0 0% 0% / 0.1);
-  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
-    0 4px 6px -1px hsl(0 0% 0% / 0.1);
-  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
-    0 8px 10px -1px hsl(0 0% 0% / 0.1);
-  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-  --tracking-normal: 0em;
+  --background: #f8fafc;
+  --foreground: #020817;
+  --card: #ffffff;
+  --card-foreground: #020817;
+  --popover: #ffffff;
+  --popover-foreground: #020817;
+  --primary: #0d9488;
+  --primary-foreground: #f8fafc;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0d9488;
+  --chart-1: #0d9488;
+  --chart-2: #14b8a6;
+  --chart-3: #2dd4bf;
+  --chart-4: #5eead4;
+  --chart-5: #99f6e4;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #020817;
+  --sidebar-primary: #0d9488;
+  --sidebar-primary-foreground: #f8fafc;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #0d9488;
+  --font-sans: Inter;
+  --font-serif: serif;
+  --font-mono: monospace;
+  --radius: 0.5rem;
+  --shadow-2xs: 0px 4px 8px -2px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0px 4px 8px -2px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
+    0px 1px 2px -3px hsl(0 0% 0% / 0.1);
+  --shadow: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
+    0px 1px 2px -3px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
+    0px 2px 4px -3px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
+    0px 4px 6px -3px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
+    0px 8px 10px -3px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0px 4px 8px -2px hsl(0 0% 0% / 0.25);
+  --tracking-normal: 0px;
   --spacing: 0.25rem;
+}
 
-  --color-brand-primary-50: #f3faf9;
-  --color-brand-primary-100: #d5f2ec;
-  --color-brand-primary-200: #ace3d9;
-  --color-brand-primary-300: #7acec1;
-  --color-brand-primary-400: #4eb3a6;
-  --color-brand-primary-500: #3ba99d;
-  --color-brand-primary-600: #287972;
-  --color-brand-primary-700: #24615d;
-  --color-brand-primary-800: #204f4c;
-  --color-brand-primary-900: #1f4240;
-  --color-brand-primary-950: #0d2626;
-
-  --color-brand-secondary-50: #f0fdf9;
-  --color-brand-secondary-100: #cbfced;
-  --color-brand-secondary-200: #98f7dc;
-  --color-brand-secondary-300: #5cecc8;
-  --color-brand-secondary-400: #2bd6b0;
-  --color-brand-secondary-500: #12ba98;
-  --color-brand-secondary-600: #0b9078;
-  --color-brand-secondary-700: #0e7765;
-  --color-brand-secondary-800: #105f53;
-  --color-brand-secondary-900: #124f45;
-  --color-brand-secondary-950: #03302a;
+@theme inline {
+  --color-brand-primary-50: #f0fdfc;
+  --color-brand-primary-100: #ccfbf7;
+  --color-brand-primary-200: #99f6ee;
+  --color-brand-primary-300: #5eeade;
+  --color-brand-primary-400: #2dd4c5;
+  --color-brand-primary-500: #14b8a9;
+  --color-brand-primary-600: #0d9488;
+  --color-brand-primary-700: #0f766d;
+  --color-brand-primary-800: #115e57;
+  --color-brand-primary-900: #134e49;
+  --color-brand-primary-950: #042f2b;
 
   --color-brand-gray-50: #f6f6f6;
   --color-brand-gray-100: #e7e7e7;
@@ -93,6 +81,15 @@
   --color-brand-gray-800: #454545;
   --color-brand-gray-900: #3d3d3d;
   --color-brand-gray-950: #262626;
+
+  --color-discord-brand-color: #5865f2;
+  --color-discord-background: #36393f;
+  --color-discord-gray: #36393f;
+  --color-discord-text: #dcddde;
+  --color-discord-timestamp: #72767d;
+
+  --font-primary: var(--font-inter);
+  --font-heading: var(--font-ebgaramond);
 }
 
 @theme inline {
@@ -146,6 +143,13 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
+
+  --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
+  --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+  --tracking-normal: var(--tracking-normal);
+  --tracking-wide: calc(var(--tracking-normal) + 0.025em);
+  --tracking-wider: calc(var(--tracking-normal) + 0.05em);
+  --tracking-widest: calc(var(--tracking-normal) + 0.1em);
 }
 
 @layer base {
