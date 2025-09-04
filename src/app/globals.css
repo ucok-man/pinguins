@@ -4,56 +4,56 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f8fafc;
-  --foreground: #020817;
-  --card: #ffffff;
-  --card-foreground: #020817;
-  --popover: #ffffff;
-  --popover-foreground: #020817;
+  --background: #fdfdfd;
+  --foreground: #0a0a0a;
+  --card: #fdfdfd;
+  --card-foreground: #0a0a0a;
+  --popover: #fdfdfd;
+  --popover-foreground: #0a0a0a;
   --primary: #0d9488;
-  --primary-foreground: #f8fafc;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
+  --primary-foreground: #ccfbf7;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #3b3c3f;
+  --muted: #eeeef0;
+  --muted-foreground: #767681;
+  --accent: #f4f4f5;
+  --accent-foreground: #3b3c3f;
   --destructive: #ef4444;
   --destructive-foreground: #f8fafc;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
+  --border: #eeeef0;
+  --input: #eeeef0;
   --ring: #0d9488;
   --chart-1: #0d9488;
   --chart-2: #14b8a6;
   --chart-3: #2dd4bf;
   --chart-4: #5eead4;
   --chart-5: #99f6e4;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #020817;
+  --sidebar: #fdfdfd;
+  --sidebar-foreground: #0a0a0a;
   --sidebar-primary: #0d9488;
-  --sidebar-primary-foreground: #f8fafc;
-  --sidebar-accent: #f1f5f9;
-  --sidebar-accent-foreground: #0f172a;
-  --sidebar-border: #e2e8f0;
+  --sidebar-primary-foreground: #ccfbf7;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #3b3c3f;
+  --sidebar-border: #eeeef0;
   --sidebar-ring: #0d9488;
-  --font-sans: Inter;
-  --font-serif: serif;
+  --font-sans: Inter, ui-sans-serif, sans-serif, system-ui;
+  --font-serif: EB Garamond, ui-serif, serif;
   --font-mono: monospace;
   --radius: 0.5rem;
-  --shadow-2xs: 0px 4px 8px -2px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0px 4px 8px -2px hsl(0 0% 0% / 0.05);
-  --shadow-sm: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
-    0px 1px 2px -3px hsl(0 0% 0% / 0.1);
-  --shadow: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
-    0px 1px 2px -3px hsl(0 0% 0% / 0.1);
-  --shadow-md: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
-    0px 2px 4px -3px hsl(0 0% 0% / 0.1);
-  --shadow-lg: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
-    0px 4px 6px -3px hsl(0 0% 0% / 0.1);
-  --shadow-xl: 0px 4px 8px -2px hsl(0 0% 0% / 0.1),
-    0px 8px 10px -3px hsl(0 0% 0% / 0.1);
-  --shadow-2xl: 0px 4px 8px -2px hsl(0 0% 0% / 0.25);
-  --tracking-normal: 0px;
+  --shadow-2xs: 0px 1px 4px 0px hsl(0 0% 0% / 0.03);
+  --shadow-xs: 0px 1px 4px 0px hsl(0 0% 0% / 0.03);
+  --shadow-sm: 0px 1px 4px 0px hsl(0 0% 0% / 0.05),
+    0px 1px 2px -1px hsl(0 0% 0% / 0.05);
+  --shadow: 0px 1px 4px 0px hsl(0 0% 0% / 0.05),
+    0px 1px 2px -1px hsl(0 0% 0% / 0.05);
+  --shadow-md: 0px 1px 4px 0px hsl(0 0% 0% / 0.05),
+    0px 2px 4px -1px hsl(0 0% 0% / 0.05);
+  --shadow-lg: 0px 1px 4px 0px hsl(0 0% 0% / 0.05),
+    0px 4px 6px -1px hsl(0 0% 0% / 0.05);
+  --shadow-xl: 0px 1px 4px 0px hsl(0 0% 0% / 0.05),
+    0px 8px 10px -1px hsl(0 0% 0% / 0.05);
+  --shadow-2xl: 0px 1px 4px 0px hsl(0 0% 0% / 0.13);
+  --tracking-normal: 0em;
   --spacing: 0.25rem;
 }
 
@@ -70,26 +70,23 @@
   --color-brand-primary-900: #134e49;
   --color-brand-primary-950: #042f2b;
 
-  --color-brand-gray-50: #f6f6f6;
-  --color-brand-gray-100: #e7e7e7;
-  --color-brand-gray-200: #d1d1d1;
-  --color-brand-gray-300: #b0b0b0;
-  --color-brand-gray-400: #888888;
-  --color-brand-gray-500: #737373;
-  --color-brand-gray-600: #5d5d5d;
-  --color-brand-gray-700: #4f4f4f;
-  --color-brand-gray-800: #454545;
-  --color-brand-gray-900: #3d3d3d;
-  --color-brand-gray-950: #262626;
+  --color-brand-secondary-50: #f4f4f5;
+  --color-brand-secondary-100: #eeeef0;
+  --color-brand-secondary-200: #dadadd;
+  --color-brand-secondary-300: #b9bac0;
+  --color-brand-secondary-400: #93949d;
+  --color-brand-secondary-500: #767681;
+  --color-brand-secondary-600: #606169;
+  --color-brand-secondary-700: #4e4e56;
+  --color-brand-secondary-800: #434349;
+  --color-brand-secondary-900: #3b3c3f;
+  --color-brand-secondary-950: #27272a;
 
   --color-discord-brand-color: #5865f2;
   --color-discord-background: #36393f;
   --color-discord-gray: #36393f;
   --color-discord-text: #dcddde;
   --color-discord-timestamp: #72767d;
-
-  --font-primary: var(--font-inter);
-  --font-heading: var(--font-ebgaramond);
 }
 
 @theme inline {
@@ -157,6 +154,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-brand-secondary-800;
   }
 }

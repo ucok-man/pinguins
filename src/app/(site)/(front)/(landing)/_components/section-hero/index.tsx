@@ -18,16 +18,16 @@ export default function SectionHero() {
             </TextH1>
           </div>
 
-          <p className="text-base/7 text-brand-gray-600 max-w-prose text-center text-pretty">
+          <p className="text-base/7 text-brand-secondary-600 max-w-prose text-center text-pretty">
             Pinguins is the easiest way to monitor your SaaS. Get instant
             notifications for{" "}
-            <span className="font-semibold text-brand-gray-700">
+            <span className="font-semibold text-brand-secondary-700">
               sales, new users, or any other event
             </span>{" "}
             sent directly to your discord
           </p>
 
-          <ul className="space-y-2 text-base/7 text-brand-gray-600 text-left flex flex-col items-start">
+          <ul className="space-y-2 text-base/7 text-brand-secondary-600 text-left flex flex-col items-start">
             {[
               "Real-time Discord alerts for critical events",
               "Buy once, use forever",

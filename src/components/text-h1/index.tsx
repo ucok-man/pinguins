@@ -10,7 +10,7 @@ export default function TextH1({ children, className, ...props }: Props) {
   return (
     <h1
       className={cn(
-        "text-4xl sm:text-5xl text-pretty font-heading font-semibold tracking-tight text-zinc-800",
+        "text-4xl sm:text-5xl text-pretty font-serif font-semibold tracking-tight text-zinc-800",
         className
       )}
       {...props}

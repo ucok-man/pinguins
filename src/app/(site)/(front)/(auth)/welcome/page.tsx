@@ -34,7 +34,7 @@ export default function WelcomePage() {
     <div className="w-full flex-1 flex justify-center items-center px-4">
       <div className="z-10 flex flex-col items-center gap-4 text-center">
         <TextH1>Setting up your account...</TextH1>
-        <p className="text-base/7 text-gray-600 max-w-prose">
+        <p className="text-base/7 text-brand-secondary-600 max-w-prose">
           Just a moment while we set things up for you.
         </p>
         <Spinner />

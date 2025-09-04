@@ -8,7 +8,7 @@ export default function SectionDiscord() {
     <section className="relative bg-brand-primary-50 pb-4">
       <div className="absolute inset-x-0 bottom-24 top-24 bg-brand-primary-700" />
       <MaxWidthWrapper className="relative mx-auto">
-        <div className="-m-2 rounded-xl bg-brand-gray-900/5 p-2 ring-1 ring-inset ring-brand-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+        <div className="-m-2 rounded-xl bg-brand-secondary-900/5 p-2 ring-1 ring-inset ring-brand-secondary-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
           <MockDiscordUI>
             <AnimatedList>
               <DiscordMessage

@@ -2,8 +2,8 @@ import Providers from "@/components/providers";
 import type { Metadata } from "next";
 import { EB_Garamond, Inter } from "next/font/google";
 
-import BgPattern from "@/components/bg-pattern";
 import { cn } from "@/lib/utils";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,12 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn(inter.variable, eb_garamond.variable)}>
-      <body className="font-primary bg-brand-primary-50 antialiased">
+      <body className="font-sans antialiased">
         <Providers>
-          <div className="fixed top-0 inset-0 -z-10">
-            <BgPattern />
-          </div>
-          <main className="relative">{children}</main>
+          <main className="relative">
+            {children}
+            <Toaster />
+          </main>
         </Providers>
       </body>
     </html>

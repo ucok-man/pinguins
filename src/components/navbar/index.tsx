@@ -2,23 +2,23 @@ import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { SignedIn, SignedOut, SignOutButton } from "@clerk/nextjs";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Logo } from "../logo";
 import { Button, buttonVariants } from "../ui/button";
 
 export default function Navbar() {
   return (
-    <nav className="sticky z-[100] h-16 inset-x-0 top-0 w-full border-b border-brand-gray-100 bg-brand-primary-50/80 backdrop-blur-lg transition-all">
+    <nav className="sticky z-[100] h-16 inset-x-0 top-0 w-full border-b border-brand-secondary-100 bg-brand-primary-50/50 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex z-40 font-semibold">
-            Ping<span className="text-brand-primary-600">quins</span>
-          </Link>
+          {/* Logo */}
+          <Logo />
 
           <div className="h-full flex items-center space-x-4">
             {/* Sign in view */}
 
             <SignedIn>
               <SignOutButton>
-                <Button size="sm" variant="link">
+                <Button size="sm" variant="ghostLink">
                   Sign out
                 </Button>
               </SignOutButton>
@@ -46,7 +46,7 @@ export default function Navbar() {
                 Pricing
               </Link>
 
-              <div className="h-8 w-px bg-brand-gray-200" />
+              <div className="h-8 w-px bg-brand-secondary-200" />
 
               <Link
                 href="/sign-in"

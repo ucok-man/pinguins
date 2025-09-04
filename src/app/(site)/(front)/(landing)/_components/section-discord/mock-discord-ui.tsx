@@ -42,7 +42,7 @@ export default function MockDiscordUI({ children }: Props) {
             key={idx}
             className="size-12 bg-discord-background rounded-3xl flex items-center justify-center mb-3 hover:rounded-xl transition-all duration-200 hover:bg-discord-brand-color cursor-not-allowed"
           >
-            <span className="text-lg font-semibold text-gray-400">
+            <span className="text-lg font-semibold text-brand-secondary-400">
               {String.fromCharCode(65 + idx)}
             </span>
           </div>
@@ -58,7 +58,7 @@ export default function MockDiscordUI({ children }: Props) {
       <div className="hidden md:flex w-60 bg-[#2f3136] flex-col">
         {/* Search Box */}
         <div className="px-4 h-16 border-b border-[#202225] flex items-center shadow-sm">
-          <div className="w-full bg-[#202225] rounded px-2 h-8 flex items-center justify-center text-gray-500 cursor-not-allowed text-xs">
+          <div className="w-full bg-[#202225] rounded px-2 h-8 flex items-center justify-center text-brand-secondary-500 cursor-not-allowed text-xs">
             Find or start a conversation
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function MockDiscordUI({ children }: Props) {
               {[...Array(5)].map((_, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center px-2 py-1.5 rounded text-gray-600 cursor-not-allowed"
+                  className="flex items-center px-2 py-1.5 rounded text-brand-secondary-600 cursor-not-allowed"
                 >
                   <div className="size-8 rounded-full bg-discord-background mr-3" />
                   <span className="font-medium text-sm">User {idx + 1}</span>

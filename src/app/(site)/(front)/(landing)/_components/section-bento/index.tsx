@@ -44,16 +44,16 @@ export default function SectionBento() {
                 <p className="mt-2 text-lg/7 font-medium tracking-tight text-brand-950 max-lg:text-center">
                   Easy Integration
                 </p>
-                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                <p className="mt-2 max-w-lg text-sm/6 text-brand-secondary-600 max-lg:text-center">
                   Connect Pinguins with your existing workflows in minutes and
                   call our intuitive logging API from any languagge.
                 </p>
               </div>
 
               <div className="relative min-h-[30rem] w-full grow">
-                <div className="absolute bottom-0 left-10 right-0 top-10 overflow-hidden rounded-tl-xl bg-gray-900 shadow-2xl">
-                  <div className="flex bg-gray-800/40 ring-1 ring-white/5">
-                    <div className="-mb-px flex text-sm/6 font-medium text-gray-400">
+                <div className="absolute bottom-0 left-10 right-0 top-10 overflow-hidden rounded-tl-xl bg-brand-secondary-900 shadow-2xl">
+                  <div className="flex bg-brand-secondary-800/40 ring-1 ring-white/5">
+                    <div className="-mb-px flex text-sm/6 font-medium text-brand-secondary-400">
                       <div className="border-b border-r border-b-white/20 border-r-white/10 bg-white/5 px-4 py-2 text-white">
                         send-event.js
                       </div>
@@ -95,7 +95,7 @@ export default function SectionBento() {
                 <p className="mt-2 text-lg/7 font-medium tracking-tight text-brand-950 max-lg:text-center">
                   Track Any Event
                 </p>
-                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                <p className="mt-2 max-w-lg text-sm/6 text-brand-secondary-600 max-lg:text-center">
                   From new user signups to successful payments, Pinguins
                   notifies you for all critical events in your SaaS.
                 </p>
@@ -123,7 +123,7 @@ export default function SectionBento() {
                 <p className="mt-2 text-lg/7 font-medium tracking-tight text-brand-950 max-lg:text-center">
                   Realtime notifications
                 </p>
-                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                <p className="mt-2 max-w-lg text-sm/6 text-brand-secondary-600 max-lg:text-center">
                   Get notified about critical events the moment they happen, no
                   matter if you&apos;re at home or on the go.
                 </p>

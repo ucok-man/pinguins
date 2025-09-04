@@ -16,7 +16,7 @@ export default function SectionFeedback() {
           <TextH1 className="text-center">What our customers say</TextH1>
         </div>
 
-        <div className="mx-auto grid max-w-2xl grid-cols-1 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-gray-200 rounded-[2rem] bg-brand-primary-700">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-brand-secondary-200 rounded-[2rem] bg-brand-primary-700">
           {/* first customer review */}
           <div className="flex flex-auto flex-col gap-4 p-6 sm:p-8 lg:p-16">
             <div className="flex gap-0.5 mb-2 justify-center lg:justify-start">

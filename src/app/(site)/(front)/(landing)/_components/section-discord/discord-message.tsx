@@ -32,7 +32,7 @@ export default function DiscordMessage(props: Props) {
           <span className="ml-2 px-1.5 py-0.5 text-xs font-semibold bg-brand-600 text-white rounded">
             APP
           </span>
-          <span className="text-gray-400 ml-1.5 text-xs font-normal">
+          <span className="text-brand-secondary-400 ml-1.5 text-xs font-normal">
             {props.timestamp}
           </span>
         </div>
