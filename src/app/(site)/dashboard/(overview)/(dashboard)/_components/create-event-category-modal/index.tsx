@@ -9,7 +9,7 @@ import {
   CATEGORY_COLOR_VALIDATOR,
   CATEGORY_EMOJI_VALIDATOR,
   CATEGORY_NAME_VALIDATOR,
-} from "./validators";
+} from "../../../../../../../lib/validators";
 
 // shadcn/ui components
 import { Button } from "@/components/ui/button";
@@ -32,11 +32,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { api } from "@/lib/api-client";
+import { QueryKeys } from "@/lib/query-keys";
 import { COLOR_OPTIONS } from "./color-option";
 import ColorSelector from "./color-selector";
 import EmojiSelector from "./emoji-selector";
-
-// Constants moved outside component to prevent recreation on every render
 
 // Form schema
 const eventCategoryFormSchema = z.object({
@@ -49,15 +49,9 @@ type EventCategoryForm = z.infer<typeof eventCategoryFormSchema>;
 
 type Props = {
   children: React.ReactNode;
-  onSuccess?: (data: EventCategoryForm) => void;
-  onError?: (error: Error) => void;
 };
 
-export default function CreateEventCategoryModal({
-  children,
-  onSuccess,
-  onError,
-}: Props) {
+export default function CreateEventCategoryModal({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const queryClient = useQueryClient();
 
@@ -73,7 +67,7 @@ export default function CreateEventCategoryModal({
   const { handleSubmit, control, reset } = form;
 
   // Close modal and reset form
-  const handleCloseModal = useCallback(
+  const handleModalOpen = useCallback(
     (open: boolean) => {
       setIsOpen(open);
       if (!open) {
@@ -83,47 +77,26 @@ export default function CreateEventCategoryModal({
     [reset]
   );
 
-  // TODO: implement this call!
   // Create category mutation
-  const { mutate: createEventCategory, isPending } = useMutation({
+  const createCategory = useMutation({
     mutationFn: async (data: EventCategoryForm) => {
-      // TODO: Replace with actual API call
-      // await api.category.createEventCategory.$post(data);
-      console.log("Creating category:", data);
-
-      // Simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Simulate potential error (remove in production)
-      if (Math.random() > 0.8) {
-        throw new Error("Failed to create category");
-      }
-
-      return data;
+      const res = await api.eventCategory.create.$post(data);
+      return await res.json();
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({
-        queryKey: ["user-event-categories"],
+      queryClient.refetchQueries({
+        queryKey: [QueryKeys.EVENT_CATEGORIES_GET_ALL],
       });
-      onSuccess?.(data);
-      handleCloseModal(false);
-    },
-    onError: (error: Error) => {
-      console.error("Failed to create category:", error);
-      onError?.(error);
-      // Keep modal open on error so user can retry
+      handleModalOpen(false);
     },
   });
 
-  const onSubmit = useCallback(
-    (data: EventCategoryForm) => {
-      createEventCategory(data);
-    },
-    [createEventCategory]
-  );
+  const onSubmit = useCallback((data: EventCategoryForm) => {
+    createCategory.mutate(data);
+  }, []);
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleCloseModal}>
+    <Dialog open={isOpen} onOpenChange={handleModalOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
 
       <DialogContent className="sm:max-w-[500px]">
@@ -207,13 +180,13 @@ export default function CreateEventCategoryModal({
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => handleCloseModal(false)}
-                disabled={isPending}
+                onClick={() => handleModalOpen(false)}
+                disabled={createCategory.isPending}
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isPending}>
-                {isPending ? (
+              <Button type="submit" disabled={createCategory.isPending}>
+                {createCategory.isPending ? (
                   <>
                     <span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-background border-t-transparent" />
                     Creating...

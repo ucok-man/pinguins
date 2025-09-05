@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
-import CreateEventCategoryModal from "../../_components/create-event-category-modal";
 import DashboardContainer from "../../_components/dashboard-container";
+import CreateEventCategoryModal from "./_components/create-event-category-modal";
+import Content from "./content";
 
 export default function DashboardPage() {
+  // TODO: handle upgrade plan
+
   return (
     <DashboardContainer
       cta={
@@ -17,7 +20,7 @@ export default function DashboardPage() {
       title="Dashboard"
       hideBackButton={true}
     >
-      {/* <PageContent /> */}
+      <Content />
     </DashboardContainer>
   );
 }

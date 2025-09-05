@@ -6,7 +6,6 @@ import { api } from "@/lib/api-client";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { toast } from "sonner";
 
 export default function WelcomePage() {
   const router = useRouter();
@@ -19,10 +18,6 @@ export default function WelcomePage() {
 
     onSuccess: () => {
       router.push("/dashboard");
-    },
-
-    onError: () => {
-      toast.error("Oops! something went wrong 🫣");
     },
   });
 

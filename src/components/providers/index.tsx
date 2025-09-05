@@ -1,27 +1,25 @@
 "use client";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import {
-  QueryCache,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HTTPException } from "hono/http-exception";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren } from "react";
+import { toast } from "sonner";
 
 export default function Providers({ children }: PropsWithChildren) {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        queryCache: new QueryCache({
-          onError: (err) => {
-            if (err instanceof HTTPException) {
-              // global error handling, e.g. toast notification ...
-            }
-          },
-        }),
-      })
-  );
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      mutations: {
+        onError(err, variables, context) {
+          if (err instanceof HTTPException && err.status < 500) {
+            toast.error(err.message);
+          } else {
+            toast.error("Oops! something went wrong 🫣");
+          }
+        },
+      },
+    },
+  });
 
   return (
     <ClerkProvider>

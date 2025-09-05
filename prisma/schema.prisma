@@ -29,7 +29,7 @@ model User {
 model EventCategory {
   id        String   @id @default(cuid())
   name      String
-  color     Int
+  color     String
   emoji     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
