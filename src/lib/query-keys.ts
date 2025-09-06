@@ -1,3 +1,5 @@
 export enum QueryKeys {
-  EVENT_CATEGORIES_GET_ALL = "eventCategories.getAll",
+  EVENT_CATEGORY_GET_ALL = "eventCategory.getAll",
+  EVENT_GET_ALL_BY_CATEGORY_NAME = "event.getAllByCategoryName",
+  EVENT_POLL_BY_CATEGORY_NAME = "event.pollByCategoryName",
 }

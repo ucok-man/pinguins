@@ -1,3 +1,4 @@
+import { formatEventCategoryName } from "@/lib/utils";
 import { format } from "date-fns";
 
 type Props = {
@@ -24,7 +25,7 @@ export default function CategoryHeader({ category }: Props) {
       />
       <div>
         <h3 className="text-lg/7 font-medium tracking-tight text-gray-950">
-          {category.emoji || "🐧"} {category.name}
+          {category.emoji || "🐧"} {formatEventCategoryName(category.name)}
         </h3>
         <p className="text-sm/6 text-gray-600">
           {format(category.createdAt, "MMM d, yyyy")}

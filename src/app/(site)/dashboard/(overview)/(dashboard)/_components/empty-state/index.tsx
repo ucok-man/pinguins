@@ -17,7 +17,7 @@ export default function EmptyState() {
     },
     onSuccess: () => {
       queryClient.refetchQueries({
-        queryKey: [QueryKeys.EVENT_CATEGORIES_GET_ALL],
+        queryKey: [QueryKeys.EVENT_CATEGORY_GET_ALL],
       });
     },
   });

@@ -85,7 +85,7 @@ export default function CreateEventCategoryModal({ children }: Props) {
     },
     onSuccess: (data) => {
       queryClient.refetchQueries({
-        queryKey: [QueryKeys.EVENT_CATEGORIES_GET_ALL],
+        queryKey: [QueryKeys.EVENT_CATEGORY_GET_ALL],
       });
       handleModalOpen(false);
     },

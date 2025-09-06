@@ -15,7 +15,7 @@ export default function Content() {
 
   // Queries and mutations
   const eventCategories = useQuery({
-    queryKey: [QueryKeys.EVENT_CATEGORIES_GET_ALL],
+    queryKey: [QueryKeys.EVENT_CATEGORY_GET_ALL],
     queryFn: async () => {
       const res = await api.eventCategory.getAll.$get();
       const { eventCategories } = await res.json();
@@ -29,7 +29,7 @@ export default function Content() {
     },
     onSuccess: () => {
       queryClient.refetchQueries({
-        queryKey: [QueryKeys.EVENT_CATEGORIES_GET_ALL],
+        queryKey: [QueryKeys.EVENT_CATEGORY_GET_ALL],
       });
       setDeletingCategory(null);
     },

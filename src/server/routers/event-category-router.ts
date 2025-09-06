@@ -53,6 +53,32 @@ export const eventCategoryRouter = j.router({
     }
   }),
 
+  getByName: privateProcedure
+    .input(
+      z.object({
+        name: CATEGORY_NAME_VALIDATOR,
+      })
+    )
+    .query(async ({ c, ctx, input }) => {
+      try {
+        const category = await db.eventCategory.findFirst({
+          where: {
+            name: input.name,
+            userId: ctx.user.id,
+          },
+        });
+        return c.json({ eventCategory: category });
+      } catch (error) {
+        if (error instanceof HTTPException) {
+          throw error;
+        }
+
+        throw new HTTPException(500, {
+          message: `sorry we have problem in our server.`,
+        });
+      }
+    }),
+
   create: privateProcedure
     .input(
       z.object({
