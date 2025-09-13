@@ -35,9 +35,9 @@ export const SIDEBAR_ITEMS = [
         text: "API Key",
       },
       {
-        href: "/dashboard/discord",
+        href: "/dashboard/integrations",
         icon: Settings2,
-        text: "General",
+        text: "Integrations",
       },
     ],
   },

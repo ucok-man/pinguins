@@ -2,6 +2,7 @@ import { db } from "@/lib/db-client";
 import { currentUser } from "@clerk/nextjs/server";
 import { createId } from "@paralleldrive/cuid2";
 import { HTTPException } from "hono/http-exception";
+import z from "zod";
 import { j, privateProcedure, publicProcedure } from "../jstack";
 
 export const authRouter = j.router({
@@ -59,6 +60,25 @@ export const authRouter = j.router({
 
     return c.json({ apikey });
   }),
+
+  updateDiscordId: privateProcedure
+    .input(
+      z.object({
+        discordId: z.string(),
+      })
+    )
+    .mutation(async ({ c, ctx, input }) => {
+      const { discordId } = await db.user.update({
+        where: {
+          id: ctx.user.id,
+        },
+        data: {
+          discordId: input.discordId,
+        },
+      });
+
+      return c.json({ discordId });
+    }),
 
   whoami: privateProcedure.query(async ({ c, ctx }) => {
     return c.json({ ...ctx.user });

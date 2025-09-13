@@ -1,16 +1,14 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CardDescription, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { usePrismaUser } from "@/hooks/use-prisma-user";
 import { api } from "@/lib/api-client";
-import { QueryKeys } from "@/lib/query-keys";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import {
-  ActivityIcon,
   CheckIcon,
   ClipboardIcon,
   EyeIcon,
@@ -21,14 +19,11 @@ import {
 import { useState } from "react";
 import { toast } from "sonner";
 
-interface Props {
-  apiKey: string;
-}
-
-export function Content() {
+export default function Content() {
   const [copySuccess, setCopySuccess] = useState(false);
   const [showKey, setShowKey] = useState(false);
   const [newApiKey, setNewApiKey] = useState<null | string>(null);
+  const user = usePrismaUser();
 
   const handleCopy = async (value: string) => {
     try {
@@ -40,14 +35,6 @@ export function Content() {
     }
   };
 
-  const user = useQuery({
-    queryKey: [QueryKeys.AUTH_WHO_AM_I],
-    queryFn: async () => {
-      const res = await api.auth.whoami.$get();
-      return await res.json();
-    },
-  });
-
   const regerateApiKey = useMutation({
     mutationFn: async () => {
       const res = await api.auth.regenerateApiKey.$post();
@@ -55,6 +42,7 @@ export function Content() {
     },
     onSuccess: (data) => {
       setNewApiKey(data.apikey);
+      user.refetch();
       toast.success("Success creating new api key 🥳");
     },
     onError: () => {
@@ -73,22 +61,16 @@ export function Content() {
   return (
     <div className="max-w-2xl w-full border-0 bg-gradient-to-br from-card to-card/50">
       <header className="pb-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <ShieldCheckIcon className="size-5 text-primary" />
-            </div>
-            <div>
-              <CardTitle className="text-xl">API Key</CardTitle>
-              <CardDescription>
-                Secure access token for API authentication
-              </CardDescription>
-            </div>
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-primary/10">
+            <ShieldCheckIcon className="size-5 text-primary" />
           </div>
-          <Badge variant="secondary" className="gap-1">
-            <ActivityIcon className="size-3" />
-            Active
-          </Badge>
+          <div>
+            <CardTitle className="text-xl">API Key</CardTitle>
+            <CardDescription>
+              Secure access token for API authentication
+            </CardDescription>
+          </div>
         </div>
       </header>
 
