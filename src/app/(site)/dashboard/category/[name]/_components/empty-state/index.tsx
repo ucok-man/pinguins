@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { api } from "@/lib/api-client";
 import { QueryKeys } from "@/lib/query-keys";
-import { formatEventCategoryName } from "@/lib/utils";
+import { exampleFetchCodeSnippet, formatEventCategoryName } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -18,7 +18,7 @@ export default function EmptyState({ eventCategoryName }: Props) {
   const router = useRouter();
 
   // Generate code snippet with the actual category name
-  const codeSnippet = createApiExampleCode(eventCategoryName);
+  const codeSnippet = exampleFetchCodeSnippet(eventCategoryName);
 
   // Poll for events - when events are detected, refresh the page
   const { data: pollData } = useQuery({
@@ -131,21 +131,4 @@ function StatusAndHelpSection() {
       </p>
     </div>
   );
-}
-
-// Helper function to generate API example code
-function createApiExampleCode(categoryName: string): string {
-  return `await fetch('https://localhost:3000/api/events', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer YOUR_API_KEY'
-  },
-  body: JSON.stringify({
-    category: '${categoryName}',
-    fields: {
-      field1: 'value1', // for example: user id
-      field2: 'value2'  // for example: user email
-    }
-  })
-})`;
 }

@@ -1,24 +1,9 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import TextH1 from "@/components/text-h1";
+import { exampleFetchCodeSnippet } from "@/lib/utils";
 import Image from "next/image";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-
-const CODE_SNIPPET = `await fetch("${process.env.NEXT_PUBLIC_APP_URL}/api/v1/events", 
-  {
-    method: "POST",
-    body: JSON.stringify({
-      category: "sale",
-      fields: {
-        plan: "PRO",
-        email: "zoe.martinez2001@email.com",
-        amount: 49.00
-      }
-    }),
-    headers: {
-      Authorization: "Bearer <YOUR_API_KEY>"
-    }
-  })`;
 
 export default function SectionBento() {
   return (
@@ -76,7 +61,7 @@ export default function SectionBento() {
                           },
                         }}
                       >
-                        {CODE_SNIPPET}
+                        {exampleFetchCodeSnippet()}
                       </SyntaxHighlighter>
                     </div>
                   </div>

@@ -15,9 +15,12 @@ model User {
   plan       Plan     @default(FREE)
   email      String   @unique
   apikey     String   @unique @default(cuid())
-  discordId  String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  // Currently for setting up integration we dont need to store access or refresh token key.
+  // We store discord user id just for bot to send dm to which user.
+  discordId String?
 
   eventCategories EventCategory[]
   events          Event[]

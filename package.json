@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.31.6",
+    "@discordjs/rest": "^2.6.0",
     "@hookform/resolvers": "^5.2.1",
     "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/client": "^6.15.0",
@@ -42,10 +43,13 @@
     "@tailwindcss/postcss": "^4.0.0",
     "@tanstack/react-query": "^5.51.23",
     "@tanstack/react-table": "^8.21.3",
+    "await-to-js": "^3.0.0",
+    "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
+    "discord.js": "^14.22.1",
     "embla-carousel-react": "^8.6.0",
     "hono": "^4.7.0",
     "input-otp": "^1.4.2",
@@ -66,7 +70,7 @@
     "tailwind-merge": "^2.5.2",
     "uuid": "^13.0.0",
     "vaul": "^1.1.2",
-    "zod": "^3.24.1"
+    "zod": "^4.1.8"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250214.0",
@@ -74,6 +78,7 @@
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "discord-api-types": "^0.38.25",
     "dotenv": "^16.4.5",
     "eslint": "^9.18.0",
     "eslint-config-next": "^15.1.4",

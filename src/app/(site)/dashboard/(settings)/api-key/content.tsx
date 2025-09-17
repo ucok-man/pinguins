@@ -13,6 +13,7 @@ import {
   ClipboardIcon,
   EyeIcon,
   EyeOffIcon,
+  LoaderIcon,
   RefreshCwIcon,
   ShieldCheckIcon,
 } from "lucide-react";
@@ -124,27 +125,13 @@ export default function Content() {
               <Input
                 id="api-key"
                 type={"text"}
-                value={"Preparing..."}
+                value={""}
                 readOnly
+                disabled
                 className="pr-24 italic font-mono text-sm bg-muted/60 border-2 transition-all duration-200 group-hover:border-primary/20 focus-within:border-primary/40"
               />
-              <div className="absolute inset-y-0 right-0 flex items-center gap-1 pr-1">
-                <Button
-                  disabled
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 w-8 p-0 hover:bg-muted transition-colors"
-                >
-                  <EyeIcon className="size-4 text-muted-foreground" />
-                </Button>
-                <Button
-                  disabled
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 w-8 p-0 hover:bg-muted transition-all duration-200"
-                >
-                  <ClipboardIcon className="size-4 text-muted-foreground" />
-                </Button>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                <LoaderIcon className="size-4 animate-spin text-muted-foreground" />
               </div>
             </div>
           )}

@@ -2,7 +2,6 @@ import { db } from "@/lib/db-client";
 import { currentUser } from "@clerk/nextjs/server";
 import { createId } from "@paralleldrive/cuid2";
 import { HTTPException } from "hono/http-exception";
-import z from "zod";
 import { j, privateProcedure, publicProcedure } from "../jstack";
 
 export const authRouter = j.router({
@@ -61,24 +60,16 @@ export const authRouter = j.router({
     return c.json({ apikey });
   }),
 
-  updateDiscordId: privateProcedure
-    .input(
-      z.object({
-        discordId: z.string(),
-      })
-    )
-    .mutation(async ({ c, ctx, input }) => {
-      const { discordId } = await db.user.update({
-        where: {
-          id: ctx.user.id,
-        },
-        data: {
-          discordId: input.discordId,
-        },
-      });
+  connectDiscord: privateProcedure.mutation(({ c, ctx }) => {
+    // 1. create authorize url and the next steps is on redirect callback
+    const url = new URL(`https://discord.com/oauth2/authorize`);
+    url.searchParams.set("client_id", process.env.DISCORD_CLIENT_ID!);
+    url.searchParams.set("redirect_uri", process.env.DISCORD_REDIRECT_URI!);
+    url.searchParams.set("response_type", "code");
+    url.searchParams.set("scope", "identify guilds.join");
 
-      return c.json({ discordId });
-    }),
+    return c.json({ url: url.toString() });
+  }),
 
   whoami: privateProcedure.query(async ({ c, ctx }) => {
     return c.json({ ...ctx.user });
