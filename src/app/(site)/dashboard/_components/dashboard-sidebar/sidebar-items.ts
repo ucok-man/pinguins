@@ -10,7 +10,7 @@ export const SIDEBAR_ITEMS = [
         text: "Dashboard",
       },
       {
-        href: "/quickstart",
+        href: "/dashboard/quickstart",
         icon: LayoutGrid,
         text: "Quick Start",
       },
