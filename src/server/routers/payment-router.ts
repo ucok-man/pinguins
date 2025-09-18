@@ -11,7 +11,7 @@ export const paymentRouter = j.router({
         },
       ],
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard?success=true`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard?payment=success`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/pricing`,
       customer_email: ctx.user.email,
       metadata: {

@@ -45,6 +45,6 @@ export const authRouter = j.router({
   }),
 
   whoami: privateProcedure.query(async ({ c, ctx }) => {
-    return c.json({ ...ctx.user });
+    return c.superjson({ ...ctx.user });
   }),
 });

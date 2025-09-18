@@ -6,7 +6,7 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <div>
+    <div className="min-h-[calc(100vh-1px)] size-full flex flex-col items-center justify-center">
       <Navbar />
       {children}
     </div>
