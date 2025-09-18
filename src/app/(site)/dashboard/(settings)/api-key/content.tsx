@@ -38,7 +38,7 @@ export default function Content() {
 
   const regerateApiKey = useMutation({
     mutationFn: async () => {
-      const res = await api.auth.regenerateApiKey.$post();
+      const res = await api.project.regenerateApiKey.$post();
       return await res.json();
     },
     onSuccess: (data) => {

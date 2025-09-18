@@ -7,16 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// For quota limit for now just handle it in the code
+
 model User {
   id         String  @id @default(cuid())
   externalId String? @unique
 
-  quotaLimit Int
-  plan       Plan     @default(FREE)
-  email      String   @unique
-  apikey     String   @unique @default(cuid())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  plan      Plan     @default(FREE)
+  email     String   @unique
+  apikey    String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Currently for setting up integration we dont need to store access or refresh token key.
   // We store discord user id just for bot to send dm to which user.
@@ -24,7 +25,6 @@ model User {
 
   eventCategories EventCategory[]
   events          Event[]
-  quotas          Quota[]
 
   @@index([email, apikey])
 }
@@ -61,18 +61,6 @@ model Event {
   eventCategoryId String?
 
   @@index([createdAt])
-}
-
-model Quota {
-  id        String   @id @default(cuid())
-  year      Int
-  month     Int
-  count     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @unique
 }
 
 enum Plan {

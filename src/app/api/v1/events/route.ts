@@ -1,11 +1,12 @@
 import { ApiError } from "@/app/api/api-error";
 import { db } from "@/lib/db-client";
 import { DiscordClient } from "@/lib/discord-client";
-import { FREE_QUOTA, PRO_QUOTA } from "@/lib/quota";
+import { FREE_PLAN, PRO_PLAN } from "@/lib/quota";
 import { colorHexToNumber } from "@/lib/utils";
 import { CATEGORY_NAME_VALIDATOR } from "@/lib/validators";
 import { EventCategory, Plan } from "@prisma/client";
 import to from "await-to-js";
+import { addMonths, startOfMonth } from "date-fns";
 import { NextRequest, NextResponse } from "next/server";
 import * as z from "zod";
 
@@ -50,53 +51,37 @@ async function authenticateUser(req: NextRequest) {
   });
 
   if (!user) throw new Error("INVALID_AUTH_HEADER");
-  if (!user.discordId) throw new Error("DISCORD_ID_NOT_SET");
+  if (!user.discordId) throw new Error("DISCORD_INTEGRATION_NOT_SET");
 
   return user;
 }
 
 // Quota validation helper
 async function validateQuota(userId: string, userPlan: Plan) {
-  const currentDate = new Date();
-  const currentMonth = currentDate.getMonth() + 1;
-  const currentYear = currentDate.getFullYear();
+  const startMonth = startOfMonth(new Date());
+  const startNextMonth = startOfMonth(addMonths(startMonth, 1));
 
-  const [err, quota] = await to(
-    db.quota.findUnique({
+  const [err, eventCount] = await to(
+    db.event.count({
       where: {
-        userId,
-        month: currentMonth,
-        year: currentYear,
+        userId: userId,
+        createdAt: {
+          gte: startMonth,
+          lt: startNextMonth,
+        },
       },
     })
   );
+  if (err) throw new Error("FETCH_EVENT_COUNT");
 
-  if (err) throw new Error(`QUOTA_FETCH_ERROR: ${err.message}`);
+  const eventLimit =
+    userPlan === "PRO"
+      ? PRO_PLAN.maxEventsPerMonth
+      : FREE_PLAN.maxEventsPerMonth;
 
-  if (!quota) {
-    const [err] = await to(
-      db.quota.create({
-        data: {
-          month: currentMonth,
-          year: currentYear,
-          userId: userId,
-        },
-      })
-    );
-    if (err) throw new Error(`QUOTA_CREATE_ERROR: ${err.message}`);
-    return { currentMonth, currentYear };
-  }
-
-  const quotaLimit =
-    userPlan === Plan.FREE
-      ? FREE_QUOTA.maxEventsPerMonth
-      : PRO_QUOTA.maxEventsPerMonth;
-
-  if (quota && quota.count >= quotaLimit) {
+  if (eventCount >= eventLimit) {
     throw new Error("QUOTA_EXCEEDED");
   }
-
-  return { currentMonth, currentYear };
 }
 
 // Request validation helper
@@ -201,24 +186,6 @@ async function updateEventDeliveryStatus(
   if (err) throw new Error(`EVENT_UPDATE_ERROR: ${err}`);
 }
 
-// Quota update
-async function updateQuota(userId: string, month: number, year: number) {
-  const [err] = await to(
-    db.quota.upsert({
-      where: { userId, month, year },
-      update: { count: { increment: 1 } },
-      create: {
-        userId,
-        month,
-        year,
-        count: 1,
-      },
-    })
-  );
-
-  if (err) throw new Error(`QUOTA_UPDATE_ERROR: ${err}`);
-}
-
 // Main API handler
 export async function POST(req: NextRequest) {
   try {
@@ -226,10 +193,7 @@ export async function POST(req: NextRequest) {
     const user = await authenticateUser(req);
 
     // 2. Validate quota
-    const { currentMonth, currentYear } = await validateQuota(
-      user.id,
-      user.plan
-    );
+    await validateQuota(user.id, user.plan);
 
     // 3. Validate request body
     const dto = await validateRequest(req);
@@ -259,9 +223,6 @@ export async function POST(req: NextRequest) {
       throw discordError;
     }
 
-    // 8. Update quota
-    await updateQuota(user.id, currentMonth, currentYear);
-
     // 9. Return success response
     return NextResponse.json(
       { message: "Event processed successfully", eventId: event.id },
@@ -290,9 +251,9 @@ export async function POST(req: NextRequest) {
           JSON.parse(errorMessage.split(": ")[1]!)
         );
 
-      case errorMessage === "DISCORD_ID_NOT_SET":
+      case errorMessage === "DISCORD_INTEGRATION_NOT_SET":
         return ApiError.unprocessableEntity(
-          "cannot proccess your request because your discord id are not connected"
+          "cannot proccess your request because integration discord not set"
         );
 
       case errorMessage === "QUOTA_EXCEEDED":
@@ -300,16 +261,10 @@ export async function POST(req: NextRequest) {
           "monthly quota reached. please upgrade your plan for more events"
         );
 
-      case errorMessage === "QUOTA_FETCH_ERROR":
+      case errorMessage === "FETCH_EVENT_COUNT":
         return ApiError.internalServer(
           new Error(errorMessage),
-          "Error getting quota"
-        );
-
-      case errorMessage === "QUOTA_CREATE_ERROR":
-        return ApiError.internalServer(
-          new Error(errorMessage),
-          "Error create quota"
+          "Error fetching event"
         );
 
       case errorMessage === "EVENT_CREATION_ERROR":
@@ -328,12 +283,6 @@ export async function POST(req: NextRequest) {
         return ApiError.internalServer(
           new Error(errorMessage),
           "Error updating event"
-        );
-
-      case errorMessage === "QUOTA_UPDATE_ERROR":
-        return ApiError.internalServer(
-          new Error(errorMessage),
-          "Error updating quota"
         );
 
       default:

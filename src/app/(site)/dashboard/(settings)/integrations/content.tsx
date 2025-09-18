@@ -44,7 +44,7 @@ function StatusBadge({ connected }: { connected: boolean }) {
   const router = useRouter();
   const connectDiscord = useMutation({
     mutationFn: async () => {
-      const res = await api.auth.connectDiscord.$post();
+      const res = await api.project.connectDiscord.$post();
       return await res.json();
     },
     onSuccess: ({ url }) => {

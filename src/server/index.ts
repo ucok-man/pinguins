@@ -2,6 +2,8 @@ import { j } from "./jstack";
 import { authRouter } from "./routers/auth-router";
 import { eventCategoryRouter } from "./routers/event-category-router";
 import { eventRouter } from "./routers/event-router";
+import { paymentRouter } from "./routers/payment-router";
+import { projectRouter } from "./routers/project-router";
 
 /**
  * This is your base API.
@@ -23,6 +25,8 @@ const appRouter = j.mergeRouters(api, {
   auth: authRouter,
   eventCategory: eventCategoryRouter,
   event: eventRouter,
+  payment: paymentRouter,
+  project: projectRouter,
 });
 
 export type AppRouter = typeof appRouter;

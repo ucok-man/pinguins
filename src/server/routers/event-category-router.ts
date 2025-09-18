@@ -1,5 +1,5 @@
 import { db } from "@/lib/db-client";
-import { FREE_QUOTA, PRO_QUOTA } from "@/lib/quota";
+import { FREE_PLAN, PRO_PLAN } from "@/lib/quota";
 import {
   CATEGORY_COLOR_VALIDATOR,
   CATEGORY_EMOJI_VALIDATOR,
@@ -90,22 +90,19 @@ export const eventCategoryRouter = j.router({
     .mutation(async ({ c, ctx, input }) => {
       try {
         const count = await db.eventCategory.count({
-          take: PRO_QUOTA.maxEventCategories,
+          take: PRO_PLAN.maxEventCategories,
           where: {
             userId: ctx.user.id,
           },
         });
 
-        if (
-          ctx.user.plan === "FREE" &&
-          count >= FREE_QUOTA.maxEventCategories
-        ) {
+        if (ctx.user.plan === "FREE" && count >= FREE_PLAN.maxEventCategories) {
           throw new HTTPException(422, {
             message: "You have reached max event categories quota.",
           });
         }
 
-        if (ctx.user.plan === "PRO" && count >= PRO_QUOTA.maxEventCategories) {
+        if (ctx.user.plan === "PRO" && count >= PRO_PLAN.maxEventCategories) {
           throw new HTTPException(422, {
             message: "You have reached max event categories quota.",
           });
