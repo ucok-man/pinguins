@@ -4,6 +4,7 @@ import ThreeDotLoader from "@/components/three-dot-loader";
 import { api } from "@/lib/api-client";
 import { QueryKeys } from "@/lib/query-keys";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import CategoriesGrid from "./_components/categories-grid";
 import DeleteEventCategoryModal from "./_components/delete-event-category-modal";
@@ -12,6 +13,7 @@ import EmptyState from "./_components/empty-state";
 export default function Content() {
   const [deletingCategory, setDeletingCategory] = useState<string | null>(null);
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   // Queries and mutations
   const eventCategories = useQuery({
@@ -28,10 +30,14 @@ export default function Content() {
       await api.eventCategory.remove.$post({ name });
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.EVENT_CATEGORY_GET_ALL],
+      });
       queryClient.refetchQueries({
         queryKey: [QueryKeys.EVENT_CATEGORY_GET_ALL],
       });
       setDeletingCategory(null);
+      router.refresh();
     },
   });
 

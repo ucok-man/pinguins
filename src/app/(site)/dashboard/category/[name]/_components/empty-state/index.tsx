@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { api } from "@/lib/api-client";
 import { QueryKeys } from "@/lib/query-keys";
 import { exampleFetchCodeSnippet, formatEventCategoryName } from "@/lib/utils";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -16,6 +16,7 @@ type Props = {
 
 export default function EmptyState({ eventCategoryName }: Props) {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   // Generate code snippet with the actual category name
   const codeSnippet = exampleFetchCodeSnippet(eventCategoryName);
@@ -38,6 +39,9 @@ export default function EmptyState({ eventCategoryName }: Props) {
   // Refresh page when events are detected
   useEffect(() => {
     if (pollData?.hasEvent) {
+      queryClient.refetchQueries({
+        queryKey: [QueryKeys.EVENT_GET_ALL_BY_CATEGORY_NAME],
+      });
       router.refresh();
     }
   }, [pollData?.hasEvent, router]);

@@ -86,7 +86,7 @@ export default function FilterTabs({ activeTab, onTabChange, summary }: Props) {
                 <Card key={key}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0">
                     <h3 className="text-sm font-medium text-muted-foreground">
-                      {capitalizeFirstLetter(key)} Field
+                      Total {capitalizeFirstLetter(key)} Field
                     </h3>
 
                     <BarChart className="h-4 w-4 text-muted-foreground" />
@@ -94,7 +94,7 @@ export default function FilterTabs({ activeTab, onTabChange, summary }: Props) {
                   <CardContent>
                     <div className="space-y-2">
                       <p className="text-2xl font-bold">{sum.toFixed(2)}</p>
-                      <p className="text-sm text-muted-foreground">{`Total value ${getTimeRangeLabel(
+                      <p className="text-sm text-muted-foreground">{`Total ${key} field value ${getTimeRangeLabel(
                         activeTab
                       )}`}</p>
                     </div>

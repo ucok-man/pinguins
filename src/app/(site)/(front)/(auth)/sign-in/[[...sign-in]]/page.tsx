@@ -9,7 +9,7 @@ export default function SigninPage() {
 
   return (
     <div className="w-full flex-1 flex items-center justify-center">
-      <SignIn forceRedirectUrl={"/welcome"} />
+      <SignIn fallbackRedirectUrl={"/welcome"} forceRedirectUrl={"/welcome"} />
     </div>
   );
 }

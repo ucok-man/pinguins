@@ -6,6 +6,7 @@ import { ArrowUpDown } from "lucide-react";
 
 export function createColumnDefinition(
   events: Event[] | undefined,
+  meta: { page: number; pageSize: number },
   categoryName: string
 ): ColumnDef<Event>[] {
   const numberColumn: ColumnDef<Event>[] = [
@@ -13,7 +14,9 @@ export function createColumnDefinition(
       id: "rowNumber",
       header: "No",
       cell: ({ row }) => (
-        <span className="text-sm text-gray-500">{row.index + 1}</span>
+        <span className="text-sm text-gray-500">
+          {row.index + 1 + meta.page * meta.pageSize - meta.pageSize}
+        </span>
       ),
       enableSorting: false,
       enableHiding: false,

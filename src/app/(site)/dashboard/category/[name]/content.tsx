@@ -80,7 +80,7 @@ export default function Content({ eventCategoryName }: Props) {
   }
 
   // Show empty state if no events exist
-  if (!events?.data) {
+  if (!events?.data.length) {
     return <EmptyState eventCategoryName={eventCategoryName} />;
   }
 
@@ -95,7 +95,11 @@ export default function Content({ eventCategoryName }: Props) {
 
       {/* Events table section */}
       <EventTable
-        columns={createColumnDefinition(events?.data, eventCategoryName)}
+        columns={createColumnDefinition(
+          events?.data,
+          { page: events.meta.currentPage, pageSize: events.meta.pageSize },
+          eventCategoryName
+        )}
         data={events?.data ?? []}
         dataCount={events?.summary.recordCount ?? 0}
         isLoading={isFetching}

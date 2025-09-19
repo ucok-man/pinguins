@@ -1,15 +1,15 @@
 "use client";
 
+import {
+  CATEGORY_COLOR_VALIDATOR,
+  CATEGORY_EMOJI_VALIDATOR,
+  CATEGORY_NAME_VALIDATOR,
+} from "@/lib/validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  CATEGORY_COLOR_VALIDATOR,
-  CATEGORY_EMOJI_VALIDATOR,
-  CATEGORY_NAME_VALIDATOR,
-} from "../../../../../../../lib/validators";
 
 // shadcn/ui components
 import { Button } from "@/components/ui/button";
@@ -80,10 +80,12 @@ export default function CreateEventCategoryModal({ children }: Props) {
   // Create category mutation
   const createCategory = useMutation({
     mutationFn: async (data: EventCategoryForm) => {
-      const res = await api.eventCategory.create.$post(data);
-      return await res.json();
+      await api.eventCategory.create.$post(data);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.EVENT_CATEGORY_GET_ALL],
+      });
       queryClient.refetchQueries({
         queryKey: [QueryKeys.EVENT_CATEGORY_GET_ALL],
       });

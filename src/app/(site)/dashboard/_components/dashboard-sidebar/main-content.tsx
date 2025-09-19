@@ -7,6 +7,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
@@ -15,6 +16,7 @@ import { SIDEBAR_ITEMS } from "./sidebar-items";
 export default function MainContent() {
   const pathname = usePathname();
   const router = useRouter();
+  const { toggleSidebar, isMobile } = useSidebar();
 
   return (
     <div>
@@ -26,7 +28,12 @@ export default function MainContent() {
               {group.items.map((item, idx) => (
                 <SidebarMenuItem key={idx}>
                   <SidebarMenuButton
-                    onClick={() => router.push(item.href)}
+                    onClick={() => {
+                      if (isMobile) {
+                        toggleSidebar();
+                      }
+                      router.push(item.href);
+                    }}
                     isActive={pathname === item.href}
                     className={cn(
                       "cursor-pointer data-[active=true]:bg-brand-primary-600 data-[active=true]:text-brand-secondary-50 text-brand-secondary-700"
