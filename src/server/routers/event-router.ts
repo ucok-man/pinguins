@@ -74,10 +74,36 @@ export const eventRouter = j.router({
             }),
         ]);
 
+        const numericFieldSum: Record<string, number> = {};
+        events.forEach((ev) => {
+          const fields = Object.entries(ev.fields as Record<string, any>);
+          fields.forEach(([key, value]) => {
+            if (!(typeof value === "number")) {
+              return;
+            }
+
+            if (!numericFieldSum[key]) {
+              numericFieldSum[key] = value;
+              return;
+            }
+
+            numericFieldSum[key] += value;
+          });
+        });
+
         return c.superjson({
           data: events,
+          summary: {
+            recordCount: totalEventCount,
+            uniqueFieldCount: uniqueFieldCount,
+            numericFieldSum: numericFieldSum,
+          },
           meta: {
-            count: { record: totalEventCount, uniqueField: uniqueFieldCount },
+            totalRecord: totalEventCount,
+            currentPage: page,
+            firstPage: 1,
+            lastPage: Math.ceil(totalEventCount / pageSize),
+            pageSize: pageSize,
           },
         });
       } catch (error) {

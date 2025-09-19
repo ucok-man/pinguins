@@ -27,6 +27,7 @@ export default function DashboardContainer({
   return (
     <section className="size-full flex flex-col">
       <div className="p-6 sm:p-8 flex flex-row w-full justify-between items-start gap-x-2  border-b">
+        {/* Header Title */}
         <div className="flex-1 flex flex-col lg:flex-row lg:gap-x-8 justify-start items-center">
           <div className="flex justify-start items-center gap-x-8">
             {!hideBackButton && (

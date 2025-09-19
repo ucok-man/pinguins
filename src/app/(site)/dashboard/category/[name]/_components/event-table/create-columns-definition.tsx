@@ -8,14 +8,24 @@ export function createColumnDefinition(
   events: Event[] | undefined,
   categoryName: string
 ): ColumnDef<Event>[] {
+  const numberColumn: ColumnDef<Event>[] = [
+    {
+      id: "rowNumber",
+      header: "No",
+      cell: ({ row }) => (
+        <span className="text-sm text-gray-500">{row.index + 1}</span>
+      ),
+      enableSorting: false,
+      enableHiding: false,
+      size: 50,
+    },
+  ];
+
   const baseColumns: ColumnDef<Event>[] = [
     {
       accessorKey: "category",
       header: "Category",
       cell: () => <span>{categoryName || "Uncategorized"}</span>,
-    },
-    {
-      accessorKey: "category",
     },
     {
       accessorKey: "createdAt",
@@ -24,7 +34,7 @@ export function createColumnDefinition(
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Date
+          Created At
           <ArrowUpDown className="ml-2 size-4" />
         </Button>
       ),
@@ -36,11 +46,13 @@ export function createColumnDefinition(
     ? Object.keys(events[0].fields as object).map((fieldName) => ({
         accessorFn: (row: Event) =>
           (row.fields as Record<string, any>)[fieldName],
-        header: fieldName,
+        header: `field.${fieldName}`,
         cell: ({ row }: { row: Row<Event> }) =>
           (row.original.fields as Record<string, any>)[fieldName] || "-",
       }))
     : [];
+
+  // Status Column
   const statusColumn: ColumnDef<Event>[] = [
     {
       accessorKey: "deliveryStatus",
@@ -61,5 +73,5 @@ export function createColumnDefinition(
       },
     },
   ];
-  return [...baseColumns, ...dynamicColumns, ...statusColumn];
+  return [...numberColumn, ...baseColumns, ...dynamicColumns, ...statusColumn];
 }

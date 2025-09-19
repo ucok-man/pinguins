@@ -21,7 +21,7 @@ export default function QuickstartGuide() {
   };
 
   return (
-    <div className="space-y-10 max-w-2xl sm:ml-2">
+    <div className="space-y-10 mx-auto">
       {/* Step 1 */}
       <SectionBox
         title="Connect Your Discord Account"
@@ -58,7 +58,7 @@ export default function QuickstartGuide() {
             body with your actual values.
           </p>
 
-          <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden relative group">
+          <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden relative group max-w-4xl mx-auto">
             {/* Terminal header with colored dots */}
             <div className="bg-gray-800 px-4 py-2 flex justify-between items-center">
               <div className="flex space-x-2">
@@ -79,7 +79,6 @@ export default function QuickstartGuide() {
                 padding: "1rem",
                 fontSize: "0.875rem",
                 lineHeight: "1.5",
-                // overflow: "scroll",
               }}
             >
               {exampleFetchCodeSnippet()}

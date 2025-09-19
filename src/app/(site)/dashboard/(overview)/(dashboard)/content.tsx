@@ -57,7 +57,7 @@ export default function Content() {
     return (
       <div className="size-full flex flex-col items-center justify-center space-y-2">
         <p className="text-secondary-500 animate-pulse">
-          preparing resource...
+          Preparing resources...
         </p>
         <ThreeDotLoader size="md" />
       </div>

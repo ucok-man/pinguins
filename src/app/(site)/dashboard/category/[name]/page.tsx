@@ -3,21 +3,17 @@ import DashboardContainer from "../../_components/dashboard-container";
 import Content from "./content";
 
 type Props = {
-  params: {
+  params: Promise<{
     name: string;
-  };
+  }>;
 };
 
 export default async function EventCategoryDetailPage({ params }: Props) {
-  // const res = await api.eventCategory.getByName.$get({ name: params.name });
-  // const { eventCategory } = await res.json();
-  // if (!eventCategory) return notFound();
+  const { name } = await params;
 
   return (
-    <DashboardContainer
-      title={`${formatEventCategoryName(params.name)} events`}
-    >
-      <Content eventCategoryName={params.name} />
+    <DashboardContainer title={`${formatEventCategoryName(name)} events`}>
+      <Content eventCategoryName={name} />
     </DashboardContainer>
   );
 }
