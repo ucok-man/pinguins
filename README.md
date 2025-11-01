@@ -2,7 +2,7 @@
 
 Pingquins is the easiest way to monitor your SaaS application. Get instant Discord notifications for sales, new users, and any custom events you want to track.
 
-**Live** : [https://pingquins.ucokman.web.id](https://pingquins.ucokman.web.id)
+**Live** : [https://pinguins.ucokman.web.id](https://pinguins.ucokman.web.id)
 
 ## Quick Start
 
