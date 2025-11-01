@@ -17,6 +17,7 @@ export default async function DashboardPage(props: Props) {
   return (
     <>
       {payment === "success" && <PaymentSuccessModal />}
+
       <DashboardContainer
         cta={
           <CreateEventCategoryModal>

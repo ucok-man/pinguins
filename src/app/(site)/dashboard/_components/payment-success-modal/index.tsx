@@ -55,14 +55,16 @@ function SuccessContent({ onClose }: { onClose: () => void }) {
     <>
       <DialogHeader className="space-y-6">
         <div className="mx-auto relative">
-          <div className="relative aspect-video border border-gray-100 w-full max-w-xs overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 shadow-sm">
+          <div className="relative border border-gray-100 w-full max-w-xs overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 shadow-sm">
             <Image
               src="/brand-asset-heart.png"
               className="h-full w-full object-cover"
+              width={100}
+              height={100}
               alt="Payment success"
             />
           </div>
-          <div className="absolute -top-2 -right-2 bg-green-500 rounded-full p-2 shadow-lg">
+          <div className="absolute -top-2 -right-2 bg-emerald-500 rounded-full p-2 shadow-lg">
             <CheckIcon className="size-4 text-white" />
           </div>
         </div>
@@ -83,7 +85,7 @@ function SuccessContent({ onClose }: { onClose: () => void }) {
       <div className="pt-2">
         <Button onClick={handleClose} className="h-12 w-full">
           <CheckIcon className="mr-2 size-5" />
-          Go to Dashboard
+          Understand
         </Button>
       </div>
     </>
