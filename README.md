@@ -58,8 +58,6 @@ Ngrok allows you to expose your local server to the internet for webhook testing
    - `CLERK_PUBLISHABLE_KEY`
    - `CLERK_SECRET_KEY`
 
----
-
 ### 4. Setup Discord Bot & OAuth
 
 1. **Create Discord Server**
