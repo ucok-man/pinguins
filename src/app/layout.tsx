@@ -17,7 +17,7 @@ const eb_garamond = EB_Garamond({
 
 export const metadata: Metadata = {
   title: "Pingquins",
-  description: "A discord saas notification",
+  description: "",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
