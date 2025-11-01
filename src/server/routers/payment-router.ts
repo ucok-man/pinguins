@@ -1,12 +1,29 @@
 import { stripe } from "@/lib/stripe-client";
+import { HTTPException } from "hono/http-exception";
 import { j, privateProcedure } from "../jstack";
 
 export const paymentRouter = j.router({
   checkout: privateProcedure.mutation(async ({ c, ctx }) => {
+    const product = await stripe.products.retrieve(
+      process.env.STRIPE_PRO_PLAN_PRODUCT_ID ?? ""
+    );
+
+    if (!product.default_price) {
+      throw new HTTPException(500, {
+        message: "Stripe product default price is empty.",
+      });
+    }
+
+    if (typeof product.default_price !== "string") {
+      throw new HTTPException(500, {
+        message: "Stripe product need to be one time payment not recurring.",
+      });
+    }
+
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
-          price: "price_1S8JxrPVLMJL1HiHnjZxJLUr",
+          price: product.default_price,
           quantity: 1,
         },
       ],
