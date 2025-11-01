@@ -10,7 +10,7 @@ Pingquins is the easiest way to monitor your SaaS application. Get instant Disco
 
 - Node.js 20+
 - PostgreSQL
-- Ngrok account
+- Ngrok
 - Stripe account
 - Clerk account
 - Discord account
